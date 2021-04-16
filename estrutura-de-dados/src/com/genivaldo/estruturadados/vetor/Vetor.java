@@ -1,8 +1,5 @@
 package com.genivaldo.estruturadados.vetor;
 
-import java.lang.ref.Cleaner;
-import java.util.Arrays;
-
 public class Vetor {
 
     private String[] elementosVetor;
@@ -14,7 +11,7 @@ public class Vetor {
     }
 
     // Método não otimizado para checar as posicições vazias de um vetor
-    public void adicionaElementoFinalVetor01(String elemento){
+    public void adicionarElementoFinalVetor01(String elemento){
         for (int i = 0; i < this.elementosVetor.length; i++) {
             if (this.elementosVetor[i] == null){
                 this.elementosVetor[i] = elemento;
@@ -24,7 +21,7 @@ public class Vetor {
     }
 
     // Método otimizado para adição de elemento no
-    public void adicionaElementoFinalVetor02(String elemento) throws Exception{
+    public void adicionarElementoFinalVetor02(String elemento) throws Exception{
         if (this.tamanhoRealVetor < this.elementosVetor.length){
             this.elementosVetor[this.tamanhoRealVetor] = elemento;
             this.tamanhoRealVetor++;
@@ -34,14 +31,31 @@ public class Vetor {
     }
     
     // Método opcional para adição de elemento no
-    public boolean adicionaElementoFinalVetor03(String elemento) {
+    public boolean adicionarElementoFinalVetor03(String elemento) {
+        this.aumentarCapacidadeVetor();
         if (this.tamanhoRealVetor < this.elementosVetor.length){
             this.elementosVetor[this.tamanhoRealVetor] = elemento;
             this.tamanhoRealVetor++;
-            //System.out.println(this.elementosVetor.toString());
             return true;
         } 
         return false;
+    }
+
+    public void adicionarElementoNaPosicaoIndicada(String elemento, int posicao){
+        if (!(posicao >= 0 && posicao <= this.tamanhoRealVetor)) {
+            throw new IllegalArgumentException("Posição inválida!");
+        }
+
+        this.aumentarCapacidadeVetor();
+
+        for (int i = this.tamanhoRealVetor; i >= 0; i--) {
+            this.elementosVetor[i+1] = this.elementosVetor[i];
+            if (i == posicao){
+                this.elementosVetor[i] = elemento;
+                this.tamanhoRealVetor++;
+                break;
+            }
+        }
     }
 
     public int retornarTamanhoRealVetor(){
@@ -67,5 +81,32 @@ public class Vetor {
         return stringVetor.toString();
 
         // return Arrays.toString(elementosVetor);
+    }
+
+    public String buscarElemento (int posicao){
+        if (!(posicao > 0 && posicao < this.elementosVetor.length)) {
+            throw new IllegalArgumentException("Posição inválida!");
+        }
+        return this.elementosVetor[posicao];
+    }
+
+    public int buscarElemento (String elemento){
+        for (int i = 0; i < this.tamanhoRealVetor; i++) {
+            if (elementosVetor[i].equals(elemento)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private void aumentarCapacidadeVetor(){
+        if (this.tamanhoRealVetor == this.elementosVetor.length){
+            String[] novoVetor = new String[this.elementosVetor.length * 2];
+            for (int i = 0; i < this.elementosVetor.length; i++){
+                novoVetor[i] = elementosVetor[i];
+            }
+            this.elementosVetor = novoVetor;
+            //System.out.println(this.elementosVetor.length);
+        }
     }
 }

@@ -7,12 +7,12 @@ public class Aula04 {
         
         Vetor vetor = new Vetor(10);
         
-        vetor.adicionaElementoFinalVetor03("Elemento 1");
-        vetor.adicionaElementoFinalVetor03("Elemento 2");
-        vetor.adicionaElementoFinalVetor03("Elemento 3");
+        vetor.adicionarElementoFinalVetor03("Elemento 1");
+        vetor.adicionarElementoFinalVetor03("Elemento 2");
+        vetor.adicionarElementoFinalVetor03("Elemento 3");
 
         //System.out.println(vetor.retornarTamanhoRealVetor());
-        System.out.println(vetor);
+        System.out.println(vetor.buscarElemento(-2));
         
     }
 }

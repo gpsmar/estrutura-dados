@@ -10,9 +10,9 @@ public class Aula03 {
         // vetor.adicionaElementoFinalVetor01("Elemento 2");
         
         try {
-            vetor.adicionaElementoFinalVetor02("Elemento 1");
-            vetor.adicionaElementoFinalVetor02("Elemento 2");
-            vetor.adicionaElementoFinalVetor02("Elemento 3");
+            vetor.adicionarElementoFinalVetor02("Elemento 1");
+            vetor.adicionarElementoFinalVetor02("Elemento 2");
+            vetor.adicionarElementoFinalVetor02("Elemento 3");
         } catch (Exception e) {
             e.printStackTrace();
         }
