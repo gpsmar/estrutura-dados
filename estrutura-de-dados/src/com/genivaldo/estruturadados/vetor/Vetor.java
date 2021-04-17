@@ -58,6 +58,17 @@ public class Vetor {
         }
     }
 
+    public void removerElementoNaPosicaoIndicada(int posicao){
+        if (!(posicao >= 0 && posicao <= this.tamanhoRealVetor)) {
+            throw new IllegalArgumentException("Posição inválida!");
+        }
+
+        for (int i = posicao; i < this.tamanhoRealVetor -1; i++) {
+            this.elementosVetor[i] = this.elementosVetor[i+1];
+        }
+        this.tamanhoRealVetor --;
+    }
+
     public int retornarTamanhoRealVetor(){
         return tamanhoRealVetor;
     }
@@ -104,6 +115,20 @@ public class Vetor {
             String[] novoVetor = new String[this.elementosVetor.length * 2];
             for (int i = 0; i < this.elementosVetor.length; i++){
                 novoVetor[i] = elementosVetor[i];
+            }
+            this.elementosVetor = novoVetor;
+            //System.out.println(this.elementosVetor.length);
+        }
+    }
+
+    private void diminuirCapacidadeVetor(){
+        if (this.tamanhoRealVetor < this.elementosVetor.length){
+            String[] novoVetor = new String[this.tamanhoRealVetor - 1];
+            for (int i = 0; i < novoVetor.length; i++){
+                novoVetor[i] = elementosVetor[i];
+                if (i == (novoVetor.length - 1)) { 
+                    break;
+                }
             }
             this.elementosVetor = novoVetor;
             //System.out.println(this.elementosVetor.length);
